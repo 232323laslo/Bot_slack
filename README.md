@@ -1,21 +1,24 @@
 # Bot_slack
 
-Bot can send message to users in slack.
-
 Для встановлення необхідних залежностей, які використовує цей код, вам потрібно
 встановити 'slackclient' та 'python-dotenv'. Ви можете встановити їх, виконавши
 наступні команди у своєму терміналі:
 
-pip install slackclient pip install python-dotenv
+# pip install slackclient
 
-Після встановлення залежностей ви повинні мати змогу виконати цей код без
-будь-яких помилок. Забезпечте, щоб у вас був встановлений Python.
+# pip install python-dotenv
+
+Переконайтесь, що у вас встановлений Python.
 
 ---
+
+Bot can send message to users in slack.
 
 To install dependencies, you need to install "slackclient" and "python-dotenv".
 Use following commands in your terminal:
 
-pip install slackclient pip install python-dotenv
+# pip install slackclient
 
-Ensure you have Python installed.
+# pip install python-dotenv
+
+Make sure you have Python installed.
