@@ -11,6 +11,7 @@ slack_bot_token = os.environ["SLACK_TOKEN"]
 # Ініціалізація клієнта Slack з авторизаційним токеном бота
 client = slack.WebClient(token=slack_bot_token)
 
+# Пошти (id users), на які треба відправити повідомлення
 email_string = """
 vladyslav_hryshchenko@proton.me
 """
