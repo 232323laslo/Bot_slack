@@ -26,34 +26,38 @@ success_users = []  # Список користувачів, кому вдало
 failed_users = []  # Список користувачів, кому не вдалося надіслати повідомлення
 
 for email in emails:
-    response = client.users_lookupByEmail(email=email.strip())
-    if response["ok"]:
-        user_id = response["user"]["id"]
-        response = client.conversations_open(users=user_id)
+    try:
+        response = client.users_lookupByEmail(email=email.strip())
         if response["ok"]:
-            channel_id = response["channel"]["id"]
-            message_response = client.chat_postMessage(
-                channel=channel_id,
-                text=message,
-                username="bot",
-                icon_emoji=":robot_face:",
-            )
-            if message_response["ok"]:
-                success_users.append(email)
-                print(f"Повідомлення успішно надіслано користувачу з поштою {email}")
+            user_id = response["user"]["id"]
+            response = client.conversations_open(users=user_id)
+            if response["ok"]:
+                channel_id = response["channel"]["id"]
+                message_response = client.chat_postMessage(
+                    channel=channel_id,
+                    text=message,
+                    username="bot",
+                    icon_emoji=":robot_face:",
+                )
+                if message_response["ok"]:
+                    success_users.append(email)
+                    print(f"Повідомлення успішно надіслано користувачу з поштою {email}")
+                else:
+                    failed_users.append(email)
+                    print(
+                        f"Не вдалося надіслати повідомлення користувачу з поштою {email}: {message_response['error']}"
+                    )
             else:
                 failed_users.append(email)
                 print(
-                    f"Не вдалося надіслати повідомлення користувачу з поштою {email}: {message_response['error']}"
+                    f"Не вдалося відкрити приватний канал для користувача з поштою {email}: {response['error']}"
                 )
         else:
             failed_users.append(email)
-            print(
-                f"Не вдалося відкрити приватний канал для користувача з поштою {email}: {response['error']}"
-            )
-    else:
+            print(f"Не вдалося знайти користувача за поштою {email}: {response['error']}")
+    except slack.errors.SlackApiError as e:
         failed_users.append(email)
-        print(f"Не вдалося знайти користувача за поштою {email}: {response['error']}")
+        print(f"Помилка при виконанні Slack API запиту: {str(e)}")
 
 # Вивід результатів в закриту групу "bot"
 group_channel = "bot"
