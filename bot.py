@@ -13,11 +13,12 @@ client = slack.WebClient(token=slack_bot_token)
 
 # Пошти (id users), на які треба відправити повідомлення
 email_string = """
-vladyslav_hryshchenko@proton.me
+exemple@proton.me
 """
 
+# Текст вставляється сюди
 message = """
----
+exemple text
 """
 
 emails = email_string.strip().split()
@@ -41,7 +42,9 @@ for email in emails:
                 )
                 if message_response["ok"]:
                     success_users.append(email)
-                    print(f"Повідомлення успішно надіслано користувачу з поштою {email}")
+                    print(
+                        f"Повідомлення успішно надіслано користувачу з поштою {email}"
+                    )
                 else:
                     failed_users.append(email)
                     print(
@@ -54,7 +57,9 @@ for email in emails:
                 )
         else:
             failed_users.append(email)
-            print(f"Не вдалося знайти користувача за поштою {email}: {response['error']}")
+            print(
+                f"Не вдалося знайти користувача за поштою {email}: {response['error']}"
+            )
     except slack.errors.SlackApiError as e:
         failed_users.append(email)
         print(f"Помилка при виконанні Slack API запиту: {str(e)}")
