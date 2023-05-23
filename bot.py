@@ -37,29 +37,19 @@ for email in emails:
                 message_response = client.chat_postMessage(
                     channel=channel_id,
                     text=message,
-                    username="bot",
-                    icon_emoji=":robot_face:",
-                )
+                    username="WIT 2.0 - IT-підтримка_bot",)
                 if message_response["ok"]:
                     success_users.append(email)
-                    print(
-                        f"Повідомлення успішно надіслано користувачу з поштою {email}"
-                    )
+                    print(f"Повідомлення успішно надіслано користувачу з поштою {email}")
                 else:
                     failed_users.append(email)
-                    print(
-                        f"Не вдалося надіслати повідомлення користувачу з поштою {email}: {message_response['error']}"
-                    )
+                    print(f"Не вдалося надіслати повідомлення користувачу з поштою {email}: {message_response['error']}")
             else:
                 failed_users.append(email)
-                print(
-                    f"Не вдалося відкрити приватний канал для користувача з поштою {email}: {response['error']}"
-                )
+                print(f"Не вдалося відкрити приватний канал для користувача з поштою {email}: {response['error']}")
         else:
             failed_users.append(email)
-            print(
-                f"Не вдалося знайти користувача за поштою {email}: {response['error']}"
-            )
+            print(f"Не вдалося знайти користувача за поштою {email}: {response['error']}")
     except slack.errors.SlackApiError as e:
         failed_users.append(email)
         print(f"Помилка при виконанні Slack API запиту: {str(e)}")
@@ -75,9 +65,9 @@ message = (
     f"Не вдалося надіслати повідомлення {failed_count} користувачам:\n"
     f"{', '.join(failed_users)}\n\n"
     f"Відправлено повідомлення:\n"
-    f"{message}"
-)
+    f"{message}")
 
 client.chat_postMessage(
-    channel=group_channel, text=message, username="bot", icon_emoji=":robot_face:"
-)
+    channel=group_channel,
+    text=message,
+    username="WIT 2.0 - IT-підтримка_bot",)
