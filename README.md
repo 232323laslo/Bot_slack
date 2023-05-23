@@ -13,6 +13,12 @@ pip install python-dotenv
 
 Переконайтесь, що у вас встановлений Python.
 
+Гіперлінки:
+
+```bash
+<http://www.example.com|This message is a link>
+```
+
 ---
 
 Bot can send message to users in slack.
