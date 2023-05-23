@@ -13,10 +13,14 @@ pip install python-dotenv
 
 Переконайтесь, що у вас встановлений Python.
 
-Гіперлінки:
+Гіперлінки\згадки:
 
 ```bash
 <http://www.example.com|This message is a link>
+```
+
+```bash
+Hey <@U024BE7LH>, thanks for submitting your report.
 ```
 
 ---
